@@ -19,7 +19,8 @@ const renderDropzoneContent = props => {
     notRevokedStatus,
     document,
     verificationStatus,
-    storeStatus
+    storeStatus,
+    retrieveCertificateStatus
   } = props;
   // isDragReject is checking for mimetype (but we skipped it)
   // fileError is when the file is not in JSON format and threw when deserilising
@@ -30,8 +31,13 @@ const renderDropzoneContent = props => {
   if (isDragAccept) {
     return <DefaultView hover={true} accept={true} />;
   }
-  if (verifying) {
-    return <VerifyingView verificationStatus={verificationStatus} />;
+  if (verifying || retrieveCertificateStatus === "PENDING") {
+    return (
+      <VerifyingView
+        verificationStatus={verificationStatus}
+        retrieveCertificateStatus={retrieveCertificateStatus}
+      />
+    );
   }
   if (
     document &&
@@ -95,7 +101,8 @@ const CertificateDropzone = ({
   notRevokedStatus,
   document,
   verificationStatus,
-  storeStatus
+  storeStatus,
+  retrieveCertificateStatus
 }) => (
   <Dropzone
     id="certificate-dropzone"
@@ -116,7 +123,8 @@ const CertificateDropzone = ({
       notRevokedStatus,
       document,
       verificationStatus,
-      storeStatus
+      storeStatus,
+      retrieveCertificateStatus
     })}
   </Dropzone>
 );
@@ -134,6 +142,7 @@ CertificateDropzone.propTypes = {
   hashStatus: PropTypes.object,
   issuedStatus: PropTypes.object,
   notRevokedStatus: PropTypes.object,
+  retrieveCertificateStatus: PropTypes.object,
   verificationStatus: PropTypes.array,
   storeStatus: PropTypes.object
 };
@@ -150,6 +159,7 @@ renderDropzoneContent.propTypes = {
   hashStatus: PropTypes.object,
   issuedStatus: PropTypes.object,
   notRevokedStatus: PropTypes.object,
+  retrieveCertificateStatus: PropTypes.object,
   verificationStatus: PropTypes.array,
   storeStatus: PropTypes.object
 };

@@ -12,6 +12,7 @@ import {
   getNotRevokedStatus,
   getVerificationStatus,
   resetCertificateState,
+  getEncryptedCertificateStatus,
   getStoreStatus
 } from "../../reducers/certificate";
 import { updateNetworkId } from "../../reducers/application";
@@ -48,20 +49,23 @@ class CertificateDropZoneContainer extends Component {
 
   render() {
     return (
-      <CertificateDropZone
-        document={this.props.document}
-        fileError={this.state.fileError}
-        handleCertificateChange={this.handleCertificateChange}
-        handleFileError={this.handleFileError}
-        verifying={this.props.verifying}
-        issuerIdentityStatus={this.props.issuerIdentityStatus}
-        hashStatus={this.props.hashStatus}
-        issuedStatus={this.props.issuedStatus}
-        notRevokedStatus={this.props.notRevokedStatus}
-        verificationStatus={this.props.verificationStatus}
-        resetData={this.resetData.bind(this)}
-        storeStatus={this.props.storeStatus}
-      />
+      <>
+        <CertificateDropZone
+          document={this.props.document}
+          retrieveCertificateStatus={this.props.encryptedCertificateStatus}
+          fileError={this.state.fileError}
+          handleCertificateChange={this.handleCertificateChange}
+          handleFileError={this.handleFileError}
+          verifying={this.props.verifying}
+          issuerIdentityStatus={this.props.issuerIdentityStatus}
+          hashStatus={this.props.hashStatus}
+          issuedStatus={this.props.issuedStatus}
+          notRevokedStatus={this.props.notRevokedStatus}
+          verificationStatus={this.props.verificationStatus}
+          resetData={this.resetData.bind(this)}
+          storeStatus={this.props.storeStatus}
+        />
+      </>
     );
   }
 }
@@ -70,6 +74,7 @@ const mapStateToProps = store => ({
   document: getCertificate(store),
 
   // Verification statuses used in verifier block
+  encryptedCertificateStatus: getEncryptedCertificateStatus(store),
   verifying: getVerifying(store),
   issuerIdentityStatus: getIssuerIdentityStatus(store),
   hashStatus: getHashStatus(store),
@@ -93,6 +98,7 @@ export default connect(
 CertificateDropZoneContainer.propTypes = {
   updateNetworkId: PropTypes.func,
   document: PropTypes.object,
+  encryptedCertificateStatus: PropTypes.object,
   handleCertificateChange: PropTypes.func,
   updateCertificate: PropTypes.func,
   resetData: PropTypes.func,
