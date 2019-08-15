@@ -98,7 +98,7 @@ export default connect(
 CertificateDropZoneContainer.propTypes = {
   updateNetworkId: PropTypes.func,
   document: PropTypes.object,
-  encryptedCertificateStatus: PropTypes.object,
+  encryptedCertificateStatus: PropTypes.string,
   handleCertificateChange: PropTypes.func,
   updateCertificate: PropTypes.func,
   resetData: PropTypes.func,

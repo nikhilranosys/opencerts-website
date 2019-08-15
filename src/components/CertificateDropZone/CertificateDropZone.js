@@ -142,7 +142,7 @@ CertificateDropzone.propTypes = {
   hashStatus: PropTypes.object,
   issuedStatus: PropTypes.object,
   notRevokedStatus: PropTypes.object,
-  retrieveCertificateStatus: PropTypes.object,
+  retrieveCertificateStatus: PropTypes.string,
   verificationStatus: PropTypes.array,
   storeStatus: PropTypes.object
 };
@@ -159,7 +159,7 @@ renderDropzoneContent.propTypes = {
   hashStatus: PropTypes.object,
   issuedStatus: PropTypes.object,
   notRevokedStatus: PropTypes.object,
-  retrieveCertificateStatus: PropTypes.object,
+  retrieveCertificateStatus: PropTypes.string,
   verificationStatus: PropTypes.array,
   storeStatus: PropTypes.object
 };
