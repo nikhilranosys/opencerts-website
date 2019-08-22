@@ -145,6 +145,10 @@
     "0x2456FC81C1342fB79D7C58A4682F031208A44d7F": {
       "name": "ROPSTEN: Singapore University of Technology and Design",
       "displayCard": false
+    },
+    "0x53e8A05fAC430fc05a2D7ea78a7a416D56a354e0": {
+      "name": "ROPSTEN: Singapore Management University",
+      "displayCard": false
     }
   }
 }
